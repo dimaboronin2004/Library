@@ -32,4 +32,9 @@ public final class Book {
     public void setCode(String code) {
         this.code = code;
     }
+
+    @Override
+    public String toString() {
+        return title + " " + author + " " + genre + " " + code;
+    }
 }

@@ -4,26 +4,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 public final class Library {
-    private final List<Book> library = new ArrayList<>();
+    private final List<Book> libraryList = new ArrayList<>();
 
     public boolean add(Book book) {
-        if (!library.contains(book)) {
-            library.add(book);
+        if (!libraryList.contains(book)) {
+            libraryList.add(book);
             return true;
         }
         else return false;
     }
 
     public boolean delete(Book book) {
-        boolean flag = library.contains(book);
-        if (flag) library.remove(book);
+        boolean flag = libraryList.contains(book);
+        if (flag) libraryList.remove(book);
         return flag;
     }
 
     public boolean change(Book one, Book another) {
-        if (library.contains(one)) {
-            int i = library.indexOf(one);
-            library.set(i, another);
+        if (libraryList.contains(one)) {
+            int i = libraryList.indexOf(one);
+            libraryList.set(i, another);
             return true;
         }
         else return false;
@@ -32,7 +32,7 @@ public final class Library {
     public boolean move(Book book, String code) {
         if (!code.matches("[А-Я]\\d+"))
             throw new IllegalArgumentException("Wrong format of code");
-        if (library.contains(book)) {
+        if (libraryList.contains(book)) {
             book.setCode(code);
             return true;
         }
@@ -41,7 +41,7 @@ public final class Library {
 
     public List<Book> searchByAuthor(String author) {
         List<Book> out = new ArrayList<>();
-        for (Book book: library) {
+        for (Book book: libraryList) {
             if (book.getAuthor().equals(author)) out.add(book);
         }
         return out;
@@ -49,7 +49,7 @@ public final class Library {
 
     public List<Book> searchByGenre(String genre) {
         List<Book> out = new ArrayList<>();
-        for (Book book: library) {
+        for (Book book: libraryList) {
             if (book.getGenre().equals(genre)) out.add(book);
         }
         return out;
@@ -59,7 +59,7 @@ public final class Library {
         if (!code.matches("[А-Я]\\d+"))
             throw new IllegalArgumentException("Wrong format of code");
         Book found = new Book("", "", "", "");
-        for (Book book: library) {
+        for (Book book: libraryList) {
             if (book.getCode().equals(code)) found = book;
         }
         return found;
@@ -67,7 +67,7 @@ public final class Library {
 
     public List<Book> searchByTitle(String title) {
         List<Book> out = new ArrayList<>();
-        for (Book book: library) {
+        for (Book book: libraryList) {
             if (book.getTitle().equals(title)) out.add(book);
         }
         return out;
@@ -75,14 +75,14 @@ public final class Library {
 
     public List<Book> searchByString(String string) {
         List<Book> out = new ArrayList<>();
-        for (Book book: library) {
+        for (Book book: libraryList) {
             if (book.getTitle().toLowerCase().contains(string.toLowerCase())) out.add(book);
         }
         return out;
     }
 
-    public List<Book> getLibrary() {
-        return library;
+    public List<Book> getLibraryList() {
+        return libraryList;
     }
 
 
@@ -91,9 +91,9 @@ public final class Library {
         if (this == obj) return true;
         if (obj instanceof Library) {
             Library another = (Library) obj;
-            boolean flag = this.getLibrary().size() == another.getLibrary().size();
-            for (Book book: this.getLibrary()) {
-                if (!another.getLibrary().contains(book)) {
+            boolean flag = this.getLibraryList().size() == another.getLibraryList().size();
+            for (Book book: this.getLibraryList()) {
+                if (!another.getLibraryList().contains(book)) {
                     flag = false;
                     break;
                 }
