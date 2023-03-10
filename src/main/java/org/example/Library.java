@@ -86,15 +86,22 @@ public final class Library {
     }
 
 
-    public boolean equals(Library another) {
-        if (this.getLibrary().size() != another.getLibrary().size()) return false;
-        boolean flag = true;
-        for (Book book: this.getLibrary()) {
-            if (!another.getLibrary().contains(book)) {
-                flag = false;
-                break;
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj instanceof Library) {
+            Library another = (Library) obj;
+            boolean flag = this.getLibrary().size() == another.getLibrary().size();
+            for (Book book: this.getLibrary()) {
+                if (!another.getLibrary().contains(book)) {
+                    flag = false;
+                    break;
+                }
             }
+            return flag;
         }
-        return flag;
+        else return false;
     }
+
+
 }
