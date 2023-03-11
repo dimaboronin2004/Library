@@ -103,5 +103,12 @@ public final class Library {
         else return false;
     }
 
-
+    @Override
+    public String toString() {
+        StringBuilder s = new StringBuilder();
+        for (Book book: libraryList) {
+            s.append(book.toString()).append("\n");
+        }
+        return s.toString();
+    }
 }

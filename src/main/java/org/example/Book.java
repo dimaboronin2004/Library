@@ -52,4 +52,15 @@ public final class Book {
         return title + ", " + author + ", " + genre + ", " + code;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj instanceof Book) {
+            Book another = (Book) obj;
+            return this.title.equals(another.title)
+                    && this.author.equals(another.author)
+                    && this.genre.equals(another.genre)
+                    && this.code.equals(another.code);
+        } else return false;
+    }
 }
